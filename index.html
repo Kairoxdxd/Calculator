@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app">
+        <div class="app__header">
+            <div class="app__info">
+            <span class="app__expression">3+23</span>
+            <span class="app__result"></span>
+            </div>
+        </div>
+
+        <main class="app__main" id="calc">
+            <button class="app__btn app__btn--remove" data-value="AC">AC</button>
+            <button class="app__btn app__btn--remove" data-value="backspace"><img src="images/Vector.svg" alt="backspace" aria-label="Delete"></button>
+            <button class="app__btn app__btn--function" data-value="%">%</button>
+            <button class="app__btn app__btn--operator" data-value="/">÷</button>
+            <button class="app__btn app__btn--number" data-value="7">7</button>
+            <button class="app__btn app__btn--number" data-value="8">8</button>
+            <button class="app__btn app__btn--number" data-value="9">9</button>
+            <button class="app__btn app__btn--operator" data-value="*">×</button>
+            <button class="app__btn app__btn--number" data-value="4">4</button>
+            <button class="app__btn app__btn--number" data-value="5">5</button>
+            <button class="app__btn app__btn--number" data-value="6">6</button>
+            <button class="app__btn app__btn--operator" data-value="-">−</button>
+            <button class="app__btn app__btn--number" data-value="1">1</button>
+            <button class="app__btn app__btn--number" data-value="2">2</button>
+            <button class="app__btn app__btn--number" data-value="3">3</button>
+            <button class="app__btn app__btn--operator" data-value="+">+</button>
+            <button class="app__btn app__btn--wide" data-value="0">0</button>
+            <button class="app__btn app__btn--number" data-value=".">.</button>
+            <button class="app__btn app__btn--equals" data-value="=">=</button>
+        </main>
+    </div>
+<script src="script.js" defer></script>
+</body>
+</html>
