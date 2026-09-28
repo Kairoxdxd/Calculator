@@ -4,6 +4,13 @@ let state = {
     operator: null,
     waiting: false,
     error: false,
+    history: [
+        // {
+        //     expression: "",
+        //     result: "", 
+        // }
+    ],
+    justCalculated: false,
 }
 
 const DEFAULT_STATE = {
@@ -12,6 +19,8 @@ const DEFAULT_STATE = {
     operator: null,
     waiting: false,
     error: false,
+    history: [],
+    justCalculated: false,
 }
 
 const KEY_MAP = {
@@ -74,6 +83,8 @@ function handleInput(value) {
 }
 
 function isOperator(v) {
+   state.justCalculated = false;
+
    if (v === "+") {
     return true
    } else if (v === "-") {
@@ -93,14 +104,15 @@ function isDigit(v) {
 }
 
 function render() {
-    const result = document.querySelector(".app__result")
-
+    const result = document.querySelector(".app__result");
+    const expression = document.getElementById('expression');
+    expression.textContent =  updateExpression()
     result.textContent = state.current
-    console.log(result.textContent)
 }
 
 function inputDigit(digit) {
-    // если пользователь нажал на оператор
+    state.justCalculated = false;
+
     if (state.waiting) {
         state.current = digit;
         state.waiting = false;
@@ -114,6 +126,8 @@ function inputDigit(digit) {
 }
 
 function backspace() {
+    state.justCalculated = false;
+
     if (state.waiting === true) {
         state.operator = null
         state.previous = null;
@@ -160,14 +174,40 @@ function calculate() {
     let op = state.operator
     let b = Number(state.current)
     
-    const result = compute(a, op, b)
+    const computed = compute(a, op, b)
 
-    state.current = String(result)
+    if (computed === null) {
+        return
+    }
+
+    state.history.unshift({
+        expression: state.previous + " " + state.operator + " " + state.current,
+        result: String(computed)
+    })
+    state.current = String(computed)
     state.previous = null;
     state.operator = null;
-    state.waiting = true
-
+    state.waiting = true;
+    state.justCalculated = true;
     render()
+}
+
+function updateExpression() {
+
+    if (state.justCalculated === true) {
+       return state.history[0].expression + " ="
+    }
+
+    if (state.previous !== null) {
+        let exp = state.previous + " " + state.operator
+
+        if(!state.waiting) {
+            exp = exp + " " + state.current
+        }
+        return exp
+    }
+
+    return ""
 }
 
 init()
