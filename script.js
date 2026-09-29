@@ -77,6 +77,10 @@ function handleInput(value) {
         clearAll();
     } else if (value === "=") {
         calculate()
+    } else if (value === ".") {
+        inputDot()
+    } else if (value === "%") {
+        percent()
     } else if(isOperator(value)) {
         setOperator(value)
     }
@@ -208,6 +212,35 @@ function updateExpression() {
     }
 
     return ""
+}
+
+
+function inputDot() {
+    state.justCalculated = false
+
+    if (state.waiting === true) {
+        state.current = "0."
+        state.waiting = false
+    } else if (!state.current.includes(".")) {
+        state.current = state.current + "."
+    }
+    render()
+}
+
+function percent() {
+    state.justCalculated = false;
+
+    if (state.waiting || state.error) {
+        return
+    }
+
+    if (state.operator === "+" || state.operator === "-") {
+        state.current = String(Number(state.previous) * Number(state.current) / 100)
+    } else {
+        state.current = String(Number(state.current) / 100)
+    }
+
+    render()
 }
 
 init()
