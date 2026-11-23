@@ -24,7 +24,7 @@ body {
 
 .app__header {
     display: flex;
-    flex: 1;
+    flex: 1; 
     flex-direction: column;
     justify-content: center;
 }
@@ -50,7 +50,7 @@ body {
 .app__main {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
+    gap: 11px;
 }
 
 .app__btn--remove {
@@ -58,7 +58,7 @@ body {
 }
 
 .app__btn {
-    padding: 25px 0px;
+    padding: 15px 0px;
     border: none;
     border-radius: 16px;
     background-color: #303136;
@@ -77,3 +77,42 @@ body {
     color: #A5A5A5;
 }
 
+/* --МОБИЛЬНАЯ АДАПТАЦИЯ */
+
+@media (min-width: 375px) {
+    .app__btn {
+        padding: 25px 0px;
+    }
+
+    .app__main {
+        gap: 16px;
+    }
+}
+
+@media (min-width: 600px) {
+
+    body {
+        display: grid;
+        place-items: center;
+    }
+    .app {
+        max-width: 480px;
+         background-color: #1a1a1a; 
+         box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+         border: 2px solid grey;
+         border-radius:  16px;
+         height: 90dvh;
+         min-height: 600px;
+         max-height: 800px;
+
+    }
+    .app__main {
+        padding: 16px;
+
+    }
+
+    .app__btn {
+        padding: 25px 0px;
+        font-size: 1.6rem;
+    }
+}
